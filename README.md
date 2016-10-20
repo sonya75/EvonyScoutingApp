@@ -1,5 +1,7 @@
 # EvonyScoutingApp
 
+This is a scouting app for Evony Age 2 based on pyEvony.
+
 **scout.py**
 
 It can be used to scout any city on any server. Although the stone price in that server needs to be below 1 for it to work. Usage:-
