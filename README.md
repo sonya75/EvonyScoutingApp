@@ -12,4 +12,6 @@ Thanks to Tim for all the help with this one.
 
 **scoutapp.py**
 
-Its a graphical interface for scout.py. But it won't work unless the compiled version of scout.py is in the same folder as this one. Both the compiled version of scout.py and scoutapp.py are in ScoutRelease folder.
+Its a graphical interface for scout.py. But it won't work unless the compiled version of scout.py is in the same folder as this one.
+
+Both the compiled version of scout.py and scoutapp.py are in release folder. Download the folder and run scoutapp.exe to use it.
