@@ -2,6 +2,8 @@ from evony import *
 import time
 import os
 import sys
+import json
+import requests
 from actionfactory.builder import *
 from actionfactory.quest import *
 from actionfactory.items import *
@@ -9,9 +11,11 @@ server=sys.argv[1].strip()
 mailguy=sys.argv[2].strip()
 declarewar=sys.argv[3].strip().split(',')
 declarewar=int(declarewar[0])+int(declarewar[1])*800
-scoutpos=sys.argv[4].strip().split(',')
-scoutpos=int(scoutpos[0])+int(scoutpos[1])*800
-def createacc(server,mailguy,declarewar,scoutpos):
+scoutpos=int(sys.argv[4].strip())
+usetim=((sys.argv[5].strip())=="True")
+disableurl=((sys.argv[6].strip())=="True")
+evonyurl=((sys.argv[7].strip())=="True")
+def createacc(server,mailguy,declarewar,scoutpos,usetim=False,disableurl=False,evonyurl=False):
 	try:
 		fatalerror=None
 		print("PROGRESSREPORT0")
@@ -427,16 +431,34 @@ def createacc(server,mailguy,declarewar,scoutpos):
 		print("PROGRESSREPORT98")
 		report=res['data']['report']['content']
 		print("PROGRESSREPORT98")
-		reporturl=report.split('<reportData reportUrl=\"')[1].split('\"')[0]
+		reporturl='http://'+report.split('<reportData reportUrl=\"')[1].split('\"')[0]
 		print("PROGRESSREPORT99")
-		os.system(("start /max http://"+reporturl))
+		x.close()
+		returl=reporturl
+		if evonyurl:
+			try:
+				d=requests.get('http://ww.evonyurl.com/battle',params={'url':reporturl})
+				j=json.loads(d.text)
+				returl='http://ww.evonyurl.com/'+j['token']
+			except:
+				pass
+		if disableurl:
+			print("PROGRESSREPORT100")
+			print("FINISHREPORT"+returl+"|||"+reporturl)
+			return returl
+		if usetim:
+			url='http://evonystuff.com/srViewer/srLoader.asp?srURL='+reporturl[7:]
+			os.system(("start /max "+url))
+		elif evonyurl:
+			os.system(("start /max "+returl))
+		else:
+			os.system(("start /max "+reporturl))
 		print("PROGRESSREPORT99")
 		print("\n\n")
 		print("PROGRESSREPORT100")
-		print("FINISHREPORT"+reporturl)
+		print("FINISHREPORT"+returl+"|||"+reporturl)
 		print("PROGRESSREPORT100")
-		x.close()
-		return reporturl
+		return returl
 	except:
 		try:
 			x.close()
@@ -447,4 +469,4 @@ def createacc(server,mailguy,declarewar,scoutpos):
 			return
 		print("ERRORREPORT")
 		return
-createacc(server,mailguy,declarewar,scoutpos)
+createacc(server,mailguy,declarewar,scoutpos,usetim,disableurl,evonyurl)
