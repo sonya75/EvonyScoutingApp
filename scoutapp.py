@@ -130,6 +130,7 @@ def finishhandler(value):
 	reportbox[donescouting].reporturl=urls[1]
 	reportbox[donescouting].showurl=urls[0]
 	reportbox[donescouting].m_button105.Bind(wx.EVT_BUTTON,clickreport)
+	frame2.m_scrolledWindow6.Layout()
 	donescouting+=1
 	frame.m_gauge2.SetValue(0)
 	if donescouting>=len(scoutlist):
@@ -195,7 +196,7 @@ def initreports():
 		reportbox.append(f)
 	frame2.m_scrolledWindow6.Layout()
 def execscout(event):
-	global thrd,enablelog,scoutlist,donescouting
+	global thrd,enablelog,scoutlist,donescouting,lastupdate
 	frame.m_button1.Disable()
 	frame.m_textCtrl5.SetValue("Starting to build account for scouting....")
 	if event!=None:
@@ -224,6 +225,7 @@ def execscout(event):
 	thrd=Thread(target=fff,args=(["scout.exe",server,mailguy,declarewar,str(scoutpos),str(usetim),str(disableurl),str(evonyurl)],))
 	thrd.daemon=True
 	thrd.start()
+	lastupdate=time.time()
 	wx.CallLater(1000,checkprocess)
 frame.m_button1.Bind(wx.EVT_BUTTON,execscout)
 frame.Show()
