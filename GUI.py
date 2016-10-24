@@ -23,7 +23,7 @@ class MyFrame1 ( wx.Frame ):
 		
 		bSizer1 = wx.BoxSizer( wx.VERTICAL )
 		
-		self.m_staticText3 = wx.StaticText( self, wx.ID_ANY, u"Scout Location(Example: 0,0)", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText3 = wx.StaticText( self, wx.ID_ANY, u"Scout Location(Example: 0,0).\n\nTo scout a list of co-ordinates enter them separaed by ';', for example 0,0;1,1", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText3.Wrap( -1 )
 		bSizer1.Add( self.m_staticText3, 0, wx.ALL, 5 )
 		
@@ -51,11 +51,35 @@ class MyFrame1 ( wx.Frame ):
 		self.m_textCtrl51 = wx.TextCtrl( self, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizer1.Add( self.m_textCtrl51, 0, wx.ALL, 5 )
 		
-		self.m_button1 = wx.Button( self, wx.ID_ANY, u"Scout", wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer1.Add( self.m_button1, 0, wx.ALL, 5 )
+		fgSizer1 = wx.FlexGridSizer( 0, 4, 0, 0 )
+		fgSizer1.SetFlexibleDirection( wx.BOTH )
+		fgSizer1.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 		
 		self.m_checkBox1 = wx.CheckBox( self, wx.ID_ANY, u"Enable Log", wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer1.Add( self.m_checkBox1, 0, wx.ALL, 5 )
+		fgSizer1.Add( self.m_checkBox1, 0, wx.ALL, 5 )
+		
+		self.m_checkBox2 = wx.CheckBox( self, wx.ID_ANY, u"Get url from evonyurl.com", wx.DefaultPosition, wx.DefaultSize, 0 )
+		fgSizer1.Add( self.m_checkBox2, 0, wx.ALL, 5 )
+		
+		self.m_checkBox3 = wx.CheckBox( self, wx.ID_ANY, u"Use Tim's scout viewer", wx.DefaultPosition, wx.DefaultSize, 0 )
+		fgSizer1.Add( self.m_checkBox3, 0, wx.ALL, 5 )
+		
+		self.m_checkBox4 = wx.CheckBox( self, wx.ID_ANY, u"Don't open URL", wx.DefaultPosition, wx.DefaultSize, 0 )
+		fgSizer1.Add( self.m_checkBox4, 0, wx.ALL, 5 )
+		
+		
+		bSizer1.Add( fgSizer1, 0, wx.EXPAND, 5 )
+		
+		bSizer23 = wx.BoxSizer( wx.HORIZONTAL )
+		
+		self.m_button1 = wx.Button( self, wx.ID_ANY, u"Scout", wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer23.Add( self.m_button1, 0, wx.ALL, 5 )
+		
+		self.m_button113 = wx.Button( self, wx.ID_ANY, u"View Reports", wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer23.Add( self.m_button113, 0, wx.ALL, 5 )
+		
+		
+		bSizer1.Add( bSizer23, 0, 0, 5 )
 		
 		self.m_staticText6 = wx.StaticText( self, wx.ID_ANY, u"Scout Progress", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText6.Wrap( -1 )
