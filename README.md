@@ -17,3 +17,17 @@ Thanks to Tim for all the help with this one.
 Its a graphical interface for scout.py. But it won't work unless the compiled version of scout.py is in the same folder as this one.
 
 Both the compiled version of scout.py and scoutapp.py are in release folder. Download the folder and run scoutapp.exe to use it.
+
+# CHANGELOG
+
+-Added support for scouting multiple co-ordinates
+
+-Added support for getting permanent url from evonyurl.com
+
+-Added support for using Tim's scout viewer
+
+**If anyone was using any of the previous versions, clean your temp folder. Its usually located in C:\Users\username\Appdata\Local\Temp**
+
+**scout.exe was creating a temp folder named \_MEI... everytime it ran.**
+
+**In the current version, this has been fixed.**
